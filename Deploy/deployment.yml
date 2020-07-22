@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-web-application-deployment
+  labels:
+    app: example-web-application
+spec:
+  progressDeadlineSeconds: 180
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-web-application
+  template:
+    metadata:
+      labels:
+        app: example-web-application
+    spec:
+      containers:
+        - name: example-web-application
+          image: maartenvana/mva-example-app:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi

@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-example-web-application
+  annotations:
+    # use the shared ingress-nginx0
+    kubernetes.io/ingress.class: "nginx-external"
+spec:
+  rules:
+  - host: example.web.service.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: example-web-application-service
+          servicePort: 80
